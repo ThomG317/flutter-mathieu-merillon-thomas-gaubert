@@ -25,7 +25,7 @@
 import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, IonRouterOutlet, IonSplitPane } from '@ionic/vue';
 import { defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { phoneLandscape, phoneLandscapeOutline, home, homeOutline, calendar, calendarOutline } from 'ionicons/icons';
+import { phonePortrait, phonePortraitOutline, home, homeOutline, calendar, calendarOutline } from 'ionicons/icons';
 
 export default defineComponent({
   name: 'App',
@@ -61,20 +61,20 @@ export default defineComponent({
       {
         title: 'Téléphone',
         url: '/phone',
-        iosIcon: phoneLandscapeOutline,
-        mdIcon: phoneLandscape
+        iosIcon: phonePortraitOutline,
+        mdIcon: phonePortrait
       },
     ];
 
     const route = useRoute();
-    selectedIndex.value = appPages.findIndex(page => page.url.toLowerCase() === route.path.toLowerCase());
+    selectedIndex.value = appPages.findIndex(page => route.path.toLowerCase().startsWith(page.url.toLowerCase()));
 
 
     return {
       selectedIndex,
       appPages,
-      phoneLandscape,
-      phoneLandscapeOutline,
+      phonePortrait,
+      phonePortraitOutline,
       home,
       homeOutline,
       calendar,
