@@ -6,13 +6,15 @@ import {
     TouchableWithoutFeedback,
     ScrollView
 } from 'react-native'
+import { createStackNavigator } from '@react-navigation/stack';
 
 import {MessageCentre} from './MessageCentre'
 
 import { couleurs } from './Theme'
-import {useLayoutEffect} from "react";
+import {useEffect, useLayoutEffect, useState} from "react";
+import {UnVoyage} from "./UnVoyage";
 
-export const ListerVoyages = ({navigation, voyages}) =>  {
+const ListerVoyages = ({navigation, voyages, goToVoyage}) =>  {
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -37,7 +39,7 @@ export const ListerVoyages = ({navigation, voyages}) =>  {
                 }
                 {
                     voyages.map((voyage, index) => (
-                        <TouchableWithoutFeedback key={index}>
+                        <TouchableWithoutFeedback key={index} onPress={() => goToVoyage(voyage)}>
                             <View style={styles.conteneurVoyage}>
                                 <Text style={styles.ville}>{voyage.ville}</Text>
                                 <Text style={styles.pays}>{voyage.pays}</Text>
@@ -63,3 +65,33 @@ const styles = StyleSheet.create({
         color: 'rgba(0, 0, 0, .5)'
     },
 })
+
+
+const Stack = createStackNavigator();
+
+export function Voyage({voyages, navigation, onAddLieu}) {
+    const [currentVoyage, setCurrentVoyage] = useState(undefined);
+
+    const goToVoyage = (voyage) => {
+        setCurrentVoyage(voyage);
+        navigation.navigate('Detail');
+    }
+
+    useEffect(() => {
+        if (currentVoyage) {
+            const newCurrent = voyages.find(v => v.id === currentVoyage.id);
+            setCurrentVoyage(newCurrent);
+        }
+    }, [voyages]);
+
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="Lister">
+                {props => <ListerVoyages {...props} voyages={voyages} goToVoyage={(voyage) => goToVoyage(voyage)}/>}
+            </Stack.Screen>
+            <Stack.Screen name="Detail">
+                {props => <UnVoyage {...props} voyage={currentVoyage} onAddLieu={(lieu) => onAddLieu(currentVoyage, lieu)}/>}
+            </Stack.Screen>
+        </Stack.Navigator>
+    );
+}

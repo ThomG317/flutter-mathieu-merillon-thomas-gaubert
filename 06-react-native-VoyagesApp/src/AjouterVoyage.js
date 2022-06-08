@@ -9,7 +9,7 @@ import uuidV4 from 'uuid/v4'
 import {couleurs} from "./Theme";
 import {useState} from "react";
 
-export const AjouterVoyage = ({onAddVoyage}) => {
+export const AjouterVoyage = ({onAddVoyage, navigation}) => {
 
     const [ville, setVille] = useState('')
     const [pays, setPays] = useState('')

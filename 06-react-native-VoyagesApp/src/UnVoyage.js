@@ -11,13 +11,13 @@ import {
 import {MessageCentre} from './MessageCentre'
 import { couleurs } from './Theme'
 
-export const UnVoyage = ({navigation}) => {
+export const UnVoyage = ({navigation, voyage, onAddLieu}) => {
     // Exemple de récupération de paramètre
     // const { listeClients } = props.navigation.state.params
     // TODO mettre à jour le titre avec le titre du voyage
     useLayoutEffect(() => {
         navigation.setOptions({
-            title:'TITRE',
+            title: voyage.ville,
             headerTitleStyle: {
                 color: 'white',
                 fontSize: 20,
@@ -31,26 +31,22 @@ export const UnVoyage = ({navigation}) => {
 
     const ajouterLieu = () => {
         if (nom === '' || description === '') return
-        const { voyage } = navigation.state.params
         const lieu = {
             nom,
             description
         }
         // TODO propager l'action pour ajouter un nouveau dans les données (App.js)
+        onAddLieu(lieu);
         setNom('')
         setDescription('')
     }
-
-    // TODO récupérer le voyage courant depuis `props.navigation.state.params`
-    const voyage = {}
 
     return (
         <View style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={[!voyage.lieux.length && { flex: 1 }]}>
                 <View style={[styles.locationsContainer, !voyage.lieux.length && { flex: 1,
                     justifyContent: 'center' }]}>
-                    { !voyage.lieux.length && <MessageCentre message='Pas de lieu pour ce voyage !'/> }
-
+                    { !voyage.lieux.length && <MessageCentre message={`Pas de lieu pour ${voyage.ville}!`}/> }
                     {
                         voyage.lieux.map((location, index) => (
                             <View key={index} style={styles.lieuConteneur}>
