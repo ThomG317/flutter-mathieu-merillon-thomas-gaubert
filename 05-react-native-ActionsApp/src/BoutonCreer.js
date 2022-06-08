@@ -5,8 +5,6 @@ import {StyleSheet, Text, TouchableHighlight, View} from 'react-native'
  * Bouton permettant de créer une nouvelle action.
  *
  * Il reçoit une propriété du composant parent `onValider` fonction à invoquer lorsque l'on appuie sur le bouton.
- *
- * TODO 1. Valoriser la propriété `onPress` de l'élément <TouchableHighlight> avec la valeur de `onValider`
 
  */
 export const BoutonCreer = ({onValider}) => (

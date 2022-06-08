@@ -38,6 +38,8 @@ export default function App() {
 
   const [actions, setActions] = useState([]);
 
+  const [selectedTab, setSelectedTab] = useState('Tous');
+
 
   /**
    * Méthode invoquée lorsque que la saisie change.
@@ -58,8 +60,9 @@ export default function App() {
     setTexteSaisie("");
   }
 
-  const completeAction = (index) => {
+  const completeAction = (action) => {
     const newActions = JSON.parse(JSON.stringify(actions));
+    const index = newActions.findIndex(a => a.title === action.title);
     const newAction = newActions[index];
     newAction.done = !newAction.done;
     newActions.splice(index, 1, newAction);
@@ -67,9 +70,14 @@ export default function App() {
   }
 
   const deleteAction = (action) => {
-    /*const index = actions.findIndex(a => a.title === action.title);
-    actions.splice(index, 1);
-    setActions(actions);*/
+    const newActions = JSON.parse(JSON.stringify(actions));
+    const index = newActions.findIndex(a => a.title === action.title);
+    newActions.splice(index, 1);
+    setActions(newActions);
+  }
+
+  const setTab = (tab) => {
+    setSelectedTab(tab);
   }
 
     return (
@@ -78,11 +86,12 @@ export default function App() {
             <Entete/>
             <Saisie texteSaisie={texteSaisie} evtTexteModifie={(titre) => quandLaSaisieChange(titre)}/>
             <ListeActions actions={actions}
-                          completeAction={(index) => completeAction(index)}
-                          deleteAction={(index) => deleteAction(index)}/>
+                          filter={selectedTab}
+                          completeAction={completeAction}
+                          deleteAction={deleteAction}/>
             <BoutonCreer onValider={() => validerNouvelleAction()}/>
           </ScrollView>
-          <Menu/>
+          <Menu selected={selectedTab} onSelect={(tab) => setTab(tab)}/>
         </View>
     )
 }

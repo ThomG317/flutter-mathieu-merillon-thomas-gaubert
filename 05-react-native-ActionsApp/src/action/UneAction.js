@@ -4,8 +4,6 @@ import {BoutonAction} from './BoutonAction'
 
 /**
  * Composant représentant une action.
- *
- * TODO modifier le code pour afficher le titre de l'action et les boutons associés.
  */
 export const UneAction = ({action, completeAction, deleteAction}) => (
     <View style={styles.conteneurUneAction}>

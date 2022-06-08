@@ -8,7 +8,7 @@ import { StyleSheet, Text, View } from 'react-native'
  */
 export const Entete = () => (
     <View style={styles.entete}>
-        <Text style={{...styles.texteEntete, fontWeight: "400"}}>Action !</Text>
+        <Text style={[styles.texteEntete]}>Action !</Text>
     </View>
 )
 
@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 72,
         color: 'rgba(175, 47, 47, 0.25)',
-        fontWeight: '100'
+        fontWeight: '400',
     },
 })
