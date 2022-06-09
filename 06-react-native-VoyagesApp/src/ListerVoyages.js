@@ -74,7 +74,7 @@ export function Voyage({voyages, navigation, onAddLieu}) {
 
     const goToVoyage = (voyage) => {
         setCurrentVoyage(voyage);
-        navigation.navigate('Detail');
+        navigation.navigate('Details');
     }
 
     useEffect(() => {
@@ -89,7 +89,7 @@ export function Voyage({voyages, navigation, onAddLieu}) {
             <Stack.Screen name="Lister">
                 {props => <ListerVoyages {...props} voyages={voyages} goToVoyage={(voyage) => goToVoyage(voyage)}/>}
             </Stack.Screen>
-            <Stack.Screen name="Detail">
+            <Stack.Screen name="Details">
                 {props => <UnVoyage {...props} voyage={currentVoyage} onAddLieu={(lieu) => onAddLieu(currentVoyage, lieu)}/>}
             </Stack.Screen>
         </Stack.Navigator>

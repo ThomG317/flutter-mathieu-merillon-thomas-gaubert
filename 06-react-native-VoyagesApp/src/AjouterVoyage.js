@@ -30,7 +30,7 @@ export const AjouterVoyage = ({onAddVoyage, navigation}) => {
         setPays('')
 
         // TODO une fois l'état mis à jour, rediriger l'utilisateur vers la liste des voyages
-        navigation.navigate('ListerV');
+        navigation.navigate('Lister des voyages');
     }
 
 

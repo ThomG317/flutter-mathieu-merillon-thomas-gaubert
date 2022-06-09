@@ -9,10 +9,10 @@ export function MyTabs({voyages, onAddVoyage, onAddLieu}) {
     return (
         <NavigationContainer>
             <Tab.Navigator>
-                <Tab.Screen name="ListerV">
+                <Tab.Screen name="Lister des voyages">
                     {props => <Voyage {...props} voyages={voyages} onAddLieu={onAddLieu}/>}
                 </Tab.Screen>
-                <Tab.Screen name="AjouterV">
+                <Tab.Screen name="Ajouter un voyage">
                     {props => <AjouterVoyage {...props} onAddVoyage={onAddVoyage}/>}
                 </Tab.Screen>
             </Tab.Navigator>
