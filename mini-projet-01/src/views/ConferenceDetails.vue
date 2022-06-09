@@ -29,12 +29,12 @@
         <h2 v-if="conference.speakers">Speaker{{ conference.speakers.length > 1 ? 's' : '' }}</h2>
         <ion-list v-if="conference.speakers && Object.entries(speakers).length > 0">
           <ion-item v-for="speakerId in conference.speakers" :key="speakerId">
-            {{ speakerId }}
             <ion-avatar slot="start">
               <img :src="`https://devfest2018.gdgnantes.com/${speakers[speakerId].photoUrl}`" alt="speaker picture"/>
             </ion-avatar>
             <ion-label>
               {{ speakers[speakerId].name }}
+              <span class="italic">#{{ speakerId }}</span>
             </ion-label>
           </ion-item>
         </ion-list>
@@ -196,5 +196,10 @@ export default defineComponent({
 
 #container a {
   text-decoration: none;
+}
+
+.italic {
+  opacity: .3;
+  font-style: italic;
 }
 </style>

@@ -55,8 +55,8 @@ export default defineComponent({
   setup() {
     const options: CameraOptions = {
       quality: 100,
-      destinationType: Camera.DestinationType.FILE_URI,
-      encodingType: Camera.EncodingType.JPEG,
+      destinationType: Camera.DestinationType.DATA_URL,
+      encodingType: Camera.EncodingType.PNG,
       mediaType: Camera.MediaType.PICTURE,
       allowEdit: false,
     }
@@ -74,9 +74,7 @@ export default defineComponent({
 
     function takePicture() {
       Camera.getPicture(options).then((imageData) => {
-        // imageData is either a base64 encoded string or a file URI
-        // If it's base64 (DATA_URL):
-        const base64Image = 'data:image/jpeg;base64,' + imageData;
+        const base64Image = 'data:image/png;base64, ' + imageData;
         store.note.photos.push(base64Image);
         saveNote(store.note);
       });
