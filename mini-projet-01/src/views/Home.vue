@@ -12,7 +12,12 @@
     <ion-content :fullscreen="true">
 
       <div id="container">
-        <strong class="capitalize">Page d'accueil</strong>
+        <div class="header">
+          <h1>DevFest 2018</h1>
+          <h2>Application pour les conférences</h2>
+        </div>
+        <img class="img" src="https://i.ytimg.com/vi/BMI5lxkoanc/maxresdefault.jpg" alt="logo DevFest 2018">
+        <ion-button router-link="conferences">Consulter les conférences</ion-button>
       </div>
     </ion-content>
   </ion-page>
@@ -20,12 +25,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonButton, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 
 export default defineComponent({
   name: 'FolderPage',
   components: {
-    IonButtons,
+    IonButton,
     IonContent,
     IonHeader,
     IonMenuButton,
@@ -37,28 +42,38 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.img {
+  display: block;
+  height: 400px;
+  max-height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+}
+
 #container {
   text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  padding: 1.5rem 2rem;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.header {
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  border-bottom: 1px solid #cccccc;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-  color: #8c8c8c;
+#container h1 {
   margin: 0;
+  font-size: 3rem;
+  font-weight: bold;
 }
 
-#container a {
-  text-decoration: none;
+#container h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #8c8c8c;
 }
 </style>
